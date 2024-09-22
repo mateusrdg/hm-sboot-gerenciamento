@@ -22,12 +22,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
 
-      - name: Set AWS Environment Variables for Spring Boot
-        run: |
-          echo "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}" >> $GITHUB_ENV
-          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
-          echo "AWS_ENDPOINT=${{ secrets.AWS_ENDPOINT }}" >> $GITHUB_ENV
-
       - name: Extract artifactId
         id: extract-artifactId
         run: echo "ARTIFACT_ID=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
