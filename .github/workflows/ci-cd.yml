@@ -63,5 +63,5 @@ jobs:
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: health-med-management-service
-          cluster: cluster
+          cluster: Cluster
           wait-for-service-stability: true
