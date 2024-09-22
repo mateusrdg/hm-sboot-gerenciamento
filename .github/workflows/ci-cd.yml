@@ -54,8 +54,8 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: prato-pronto-task-definition.json
-          container-name: prato-pronto
+          task-definition: health-med-management-task-definition.json
+          container-name: healthmed-management
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
