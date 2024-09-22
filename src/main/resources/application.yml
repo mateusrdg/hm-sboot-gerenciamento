@@ -1,0 +1,24 @@
+cloud:
+  aws:
+    region:
+      static: us-east-2
+      auto: false
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_ACCESS_KEY}
+    end-point:
+      uri: ${AWS_ENDPOINT_PAGAMENTO}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://prato-pronto.c5iicuok4ddw.us-east-2.rds.amazonaws.com:5432/prato_pronto
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true

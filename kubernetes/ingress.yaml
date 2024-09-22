@@ -1,0 +1,16 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: prato-pronto-api
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: prato-pronto-api
+                port:
+                  number: 8080

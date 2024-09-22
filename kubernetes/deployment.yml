@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prato-pronto-api
+spec:
+  selector:
+    matchLabels:
+      app: prato-pronto-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0%
+  template:
+    metadata:
+      labels:
+        app: prato-pronto-api
+    spec:
+      containers:
+        - name: prato-pronto-api
+          image: app/prato-pronto
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: "240m"
+              memory: "400Mi"
+            requests:
+              cpu: "60m"
+              memory: "180Mi"
+          ports:
+            - containerPort: 80
+              protocol: TCP

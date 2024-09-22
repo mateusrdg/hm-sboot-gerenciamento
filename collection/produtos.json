@@ -1,0 +1,98 @@
+[
+    {
+        "sku": "LAN1001",
+        "nome": "Hambúrguer Artesanal",
+        "preco": 22.99,
+        "descricao": "Hambúrguer de carne bovina, queijo cheddar, alface, tomate, cebola roxa e molho especial. Acompanha batatas fritas.",
+        "imagens": "link_imagem_hamburguer",
+        "categoria": "LANCHE"
+    },
+    {
+        "sku": "LAN1002",
+        "nome": "Sanduíche de Frango",
+        "preco": 19.99,
+        "descricao": "Sanduíche de frango grelhado, maionese caseira, alface americana, tomate e pão de batata.",
+        "imagens": "link_imagem_sanduiche_frango",
+        "categoria": "LANCHE"
+    },
+    {
+        "sku": "LAN1003",
+        "nome": "Veggie Burger",
+        "preco": 24.99,
+        "descricao": "Hambúrguer vegetariano feito com quinoa e feijão preto, guacamole, alface, tomate, cebola roxa e molho de iogurte. Servido no pão integral.",
+        "imagens": "link_imagem_veggie_burger",
+        "categoria": "LANCHE"
+    },
+    {
+        "sku": "ACO2001",
+        "nome": "Batatas Rústicas",
+        "preco": 8.99,
+        "descricao": "Batatas rústicas assadas com alecrim, sal grosso e um toque de azeite de oliva.",
+        "imagens": "link_imagem_batatas_rusticas",
+        "categoria": "ACOMPANHAMENTO"
+    },
+    {
+        "sku": "ACO2002",
+        "nome": "Anéis de Cebola",
+        "preco": 7.99,
+        "descricao": "Anéis de cebola empanados e fritos até ficarem crocantes. Servidos com molho barbecue.",
+        "imagens": "link_imagem_aneis_cebola",
+        "categoria": "ACOMPANHAMENTO"
+    },
+    {
+        "sku": "ACO2003",
+        "nome": "Salada Caesar",
+        "preco": 12.99,
+        "descricao": "Alface romana, croutons, queijo parmesão ralado e molho Caesar. Opcional: acrescente frango grelhado.",
+        "imagens": "link_imagem_salada_caesar",
+        "categoria": "ACOMPANHAMENTO"
+    },
+    {
+        "sku": "BEB3001",
+        "nome": "Limonada Natural",
+        "preco": 5.99,
+        "descricao": "Limonada feita com limões frescos e um toque de hortelã.",
+        "imagens": "link_imagem_limonada",
+        "categoria": "BEBIDA"
+    },
+    {
+        "sku": "BEB3002",
+        "nome": "Smoothie de Frutas Vermelhas",
+        "preco": 9.99,
+        "descricao": "Smoothie feito com uma mistura de frutas vermelhas, iogurte natural e mel.",
+        "imagens": "link_imagem_smoothie_frutas_vermelhas",
+        "categoria": "BEBIDA"
+    },
+    {
+        "sku": "BEB3003",
+        "nome": "Café Gelado",
+        "preco": 6.99,
+        "descricao": "Café forte e gelado, servido com leite e opcional de xarope de baunilha.",
+        "imagens": "link_imagem_cafe_gelado",
+        "categoria": "BEBIDA"
+    },
+    {
+        "sku": "SOB4001",
+        "nome": "Torta de Limão",
+        "preco": 29.99,
+        "descricao": "Uma deliciosa torta de limão com base de biscoito crocante e recheio cremoso.",
+        "imagens": "link_imagem_torta_limao",
+        "categoria": "SOBREMESA"
+    },
+    {
+        "sku": "SOB4002",
+        "nome": "Cheesecake de Morango",
+        "preco": 34.99,
+        "descricao": "Cheesecake clássico com cobertura de geleia de morango fresco, base de biscoito.",
+        "imagens": "link_imagem_cheesecake_morango",
+        "categoria": "SOBREMESA"
+    },
+    {
+        "sku": "SOB4003",
+        "nome": "Brownie de Chocolate",
+        "preco": 19.99,
+        "descricao": "Brownie denso e úmido de chocolate, com nozes crocantes e cobertura de calda de chocolate.",
+        "imagens": "link_imagem_brownie_chocolate",
+        "categoria": "SOBREMESA"
+    }
+]

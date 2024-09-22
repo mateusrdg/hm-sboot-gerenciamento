@@ -1,0 +1,106 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-2:211125787133:task-definition/prato-pronto-task-definition:38",
+    "containerDefinitions": [
+        {
+            "name": "prato-pronto",
+            "image": "211125787133.dkr.ecr.us-east-2.amazonaws.com/pratopronto-app:latest",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "prato-pronto-8080-tcp",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "secrets": [
+                {
+                    "name": "AWS_ACCESS_KEY",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-2:211125787133:secret:aws-Skpfk4:AWS_ACCESS_KEY::"
+                },
+                {
+                    "name": "AWS_ENDPOINT_PAGAMENTO",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-2:211125787133:secret:aws-Skpfk4:AWS_ENDPOINT_PAGAMENTO::"
+                },
+                {
+                    "name": "AWS_SECRET_ACCESS_KEY",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-2:211125787133:secret:aws-Skpfk4:AWS_SECRET_ACCESS_KEY::"
+                }
+            ],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/prato-pronto-task-definition",
+                    "awslogs-create-group": "true",
+                    "awslogs-region": "us-east-2",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "prato-pronto-task-definition",
+    "taskRoleArn": "arn:aws:iam::211125787133:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::211125787133:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 38,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "ecs.capability.secrets.asm.environment-variables"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2024-07-15T19:49:18.592Z",
+    "registeredBy": "arn:aws:iam::211125787133:user/admin",
+    "tags": []
+}
