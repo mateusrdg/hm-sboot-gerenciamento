@@ -62,6 +62,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: springboot-prato-pronto-service
-          cluster: Cluster
+          service: health-med-management-service
+          cluster: cluster
           wait-for-service-stability: true
