@@ -1,15 +1,15 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-2:211125787133:task-definition/prato-pronto-task-definition:38",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-2:211125787133:task-definition/health-med-management-task-definition:1",
     "containerDefinitions": [
         {
-            "name": "prato-pronto",
-            "image": "211125787133.dkr.ecr.us-east-2.amazonaws.com/pratopronto-app:latest",
+            "name": "healthmed-management",
+            "image": "211125787133.dkr.ecr.us-east-2.amazonaws.com/healthmed/management",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "prato-pronto-8080-tcp",
-                    "containerPort": 8080,
-                    "hostPort": 8080,
+                    "name": "healthmed-management-80-tcp",
+                    "containerPort": 80,
+                    "hostPort": 80,
                     "protocol": "tcp",
                     "appProtocol": "http"
                 }
@@ -19,26 +19,14 @@
             "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "secrets": [
-                {
-                    "name": "AWS_ACCESS_KEY",
-                    "valueFrom": "arn:aws:secretsmanager:us-east-2:211125787133:secret:aws-Skpfk4:AWS_ACCESS_KEY::"
-                },
-                {
-                    "name": "AWS_ENDPOINT_PAGAMENTO",
-                    "valueFrom": "arn:aws:secretsmanager:us-east-2:211125787133:secret:aws-Skpfk4:AWS_ENDPOINT_PAGAMENTO::"
-                },
-                {
-                    "name": "AWS_SECRET_ACCESS_KEY",
-                    "valueFrom": "arn:aws:secretsmanager:us-east-2:211125787133:secret:aws-Skpfk4:AWS_SECRET_ACCESS_KEY::"
-                }
-            ],
             "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/prato-pronto-task-definition",
+                    "awslogs-group": "/ecs/health-med-management-task-definition",
+                    "mode": "non-blocking",
                     "awslogs-create-group": "true",
+                    "max-buffer-size": "25m",
                     "awslogs-region": "us-east-2",
                     "awslogs-stream-prefix": "ecs"
                 },
@@ -47,11 +35,11 @@
             "systemControls": []
         }
     ],
-    "family": "prato-pronto-task-definition",
+    "family": "health-med-management-task-definition",
     "taskRoleArn": "arn:aws:iam::211125787133:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::211125787133:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 38,
+    "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -68,7 +56,7 @@
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
         },
         {
-            "name": "ecs.capability.secrets.asm.environment-variables"
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
@@ -100,7 +88,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-07-15T19:49:18.592Z",
+    "registeredAt": "2024-09-22T21:00:18.943Z",
     "registeredBy": "arn:aws:iam::211125787133:user/admin",
     "tags": []
 }
