@@ -11,13 +11,13 @@ cloud:
 
 spring:
   datasource:
-    url: jdbc:postgresql://database1.c5iicuok4ddw.us-east-2.rds.amazonaws.com:5432/healthmed
+    url: jdbc:postgresql://prato-pronto.c5iicuok4ddw.us-east-2.rds.amazonaws.com:5432/prato_pronto
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
