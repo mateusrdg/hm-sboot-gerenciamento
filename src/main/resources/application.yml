@@ -11,7 +11,7 @@ cloud:
 
 spring:
   datasource:
-    url: jdbc:postgresql://database-teste.c5iicuok4ddw.us-east-2.rds.amazonaws.com:5432/database-teste
+    url: jdbc:postgresql://database1.c5iicuok4ddw.us-east-2.rds.amazonaws.com:5432/healthmed
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
