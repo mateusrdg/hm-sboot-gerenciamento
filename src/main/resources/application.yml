@@ -11,7 +11,7 @@ cloud:
 
 spring:
   datasource:
-    url: jdbc:postgresql://database-recuperada.c5iicuok4ddw.us-east-2.rds.amazonaws.com/prato_pronto
+    url: jdbc:postgresql://database-recuperada.c5iicuok4ddw.us-east-2.rds.amazonaws.com:5432/prato_pronto
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
