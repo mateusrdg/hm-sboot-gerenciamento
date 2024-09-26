@@ -14,8 +14,8 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class DoctorDTO {
     
-    @NotNull(message = "O campo 'nome' não pode ser nulo")
-    @NotBlank(message = "O campo 'nome' não pode estar em branco")
+    @NotNull(message = "O campo 'name' não pode ser nulo")
+    @NotBlank(message = "O campo 'name' não pode estar em branco")
     private String name;
     @NotNull(message = "O campo 'cpf' não pode ser nulo")
     @NotBlank(message = "O campo 'cpf' não pode estar em branco")
@@ -29,8 +29,14 @@ public class DoctorDTO {
     @NotBlank(message = "O campo 'email' não pode estar em branco")
     private String email;
 
-    @NotNull(message = "O campo 'senha' não pode ser nulo")
-    @NotBlank(message = "O campo 'senha' não pode estar em branco")
-    private String senha;
+    @NotNull(message = "O campo 'password' não pode ser nulo")
+    @NotBlank(message = "O campo 'password' não pode estar em branco")
+    private String password;
 
+    public DoctorDTO(String name, String cpf, String crm, String email) {
+        this.name = name;
+        this.cpf = cpf;
+        this.crm = crm;
+        this.email = email;
+    }
 }

@@ -3,6 +3,7 @@ package com.healthmed.application.adapters.controllers;
 import com.healthmed.application.adapters.controllers.exception.NotFoundException;
 import com.healthmed.domain.dtos.doctor.DoctorDTO;
 import com.healthmed.domain.ports.interfaces.DoctorServicePort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,11 +24,13 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/{cpf}")
-    DoctorDTO findDoctorByCpf(@PathVariable String cpf) throws NotFoundException {
+    @PreAuthorize("hasAuthority('ROLE_MEDICO')")
+    DoctorDTO findDoctorByCpf(@PathVariable String cpf) {
         return servicePort.findDoctorByCpf(cpf);
     }
 
     @GetMapping()
+    @PreAuthorize("hasAuthority('ROLE_MEDICO')")
     List<DoctorDTO> findDoctors() {
         return servicePort.findAll();
     }

@@ -8,6 +8,11 @@ cloud:
       secret-key: ${AWS_SECRET_ACCESS_KEY}
     end-point:
       uri: ${AWS_ENDPOINT_PAGAMENTO}
+    cognito:
+      client-id: ${COGNITO_CLIENT_ID}
+      userpool: ${COGNITO_USERPOOL}
+      client-secret: ${COGNITO_CLIENT_SECRET}
+      jwk-set-uri: ${JWK_SET_URI}
 
 spring:
   datasource:

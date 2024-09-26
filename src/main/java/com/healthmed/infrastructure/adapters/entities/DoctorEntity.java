@@ -19,7 +19,6 @@ public class DoctorEntity {
     private String cpf;
     private String crm;
     private String email;
-    private String senha;
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<AppointmentScheduleEntity> schedules;
 
@@ -32,11 +31,10 @@ public class DoctorEntity {
         this.cpf = doctor.getCpf();
         this.crm = doctor.getCrm();
         this.email = doctor.getEmail();
-        this.senha = doctor.getSenha();
     }
 
     public Doctor toDomain() {
-        return new Doctor(this.id, this.name, this.cpf, this.crm, this.email, this.senha);
+        return new Doctor(this.id, this.name, this.cpf, this.crm, this.email);
     }
 
 }

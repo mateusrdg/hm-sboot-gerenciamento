@@ -1,6 +1,7 @@
 package com.healthmed.application.adapters.controllers.exception.handler;
 
 import com.healthmed.application.adapters.controllers.exception.BadRequestException;
+import com.healthmed.application.adapters.controllers.exception.InternalServerErrorException;
 import com.healthmed.application.adapters.controllers.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +32,19 @@ public class CustomExceptionHandler {
     public ResponseEntity<String> handleCustomException(MethodArgumentNotValidException ex) {
         return new ResponseEntity<>(Objects.requireNonNull(ex.getFieldError()).getDefaultMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<String> handleCustomException(Exception ex) {
+        return new ResponseEntity<>(Objects.requireNonNull(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(InternalServerErrorException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<String> handleCustomException(InternalServerErrorException ex) {
+        return new ResponseEntity<>(Objects.requireNonNull(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
 
 }

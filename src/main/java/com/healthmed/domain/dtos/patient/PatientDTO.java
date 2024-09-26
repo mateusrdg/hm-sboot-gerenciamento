@@ -25,8 +25,14 @@ public class PatientDTO {
     @NotBlank(message = "O campo 'email' não pode estar em branco")
     private String email;
 
-    @NotNull(message = "O campo 'senha' não pode ser nulo")
-    @NotBlank(message = "O campo 'senha' não pode estar em branco")
-    private String senha;
+    @NotNull(message = "O campo 'password' não pode ser nulo")
+    @NotBlank(message = "O campo 'password' não pode estar em branco")
+    private String password;
+
+    public PatientDTO (String name, String cpf, String email) {
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+    }
 
 }
