@@ -1,61 +1,82 @@
 package com.healthmed.infrastructure.adapters.repositories;
 
-import com.healthmed.application.adapters.controllers.exception.BadRequestException;
 import com.healthmed.domain.Doctor;
 import com.healthmed.infrastructure.adapters.entities.DoctorEntity;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@Disabled("Teste desabilitado temporariamente")
 @ExtendWith(MockitoExtension.class)
 class DoctorRepositoryTest {
 
     @InjectMocks
-    private DoctorRepository customerRepository;
+    private DoctorRepository repository;
 
     @Mock
-    private DoctorJpaRepository doctorJpaRepository;
+    private DoctorJpaRepository jpaRepository;
 
     @Test
-    void testeFindCustomerByCpf() {
+    void testFindDoctorByCpfFound() {
         String cpf = "cpf";
         DoctorEntity doctorEntity = new DoctorEntity();
         doctorEntity.setCpf(cpf);
-        when(doctorJpaRepository.findByCpf(cpf)).thenReturn(Optional.of(doctorEntity));
+        when(jpaRepository.findByCpf(cpf)).thenReturn(Optional.of(doctorEntity));
 
-        Optional<Doctor> result = customerRepository.findByCpf(cpf);
+        Optional<Doctor> result = repository.findByCpf(cpf);
 
         assertTrue(result.isPresent());
         assertEquals(cpf, result.get().getCpf());
+        verify(jpaRepository, times(1)).findByCpf(cpf);
     }
 
     @Test
-    void testeSaveCustomer() {
-        Doctor doctor = new Doctor();
-        doctor.setCpf("cpf");
-        when(doctorJpaRepository.findByCpf("cpf")).thenReturn(Optional.empty());
+    void testFindDoctorByCpfNotFound() {
+        String cpf = "cpf";
+        when(jpaRepository.findByCpf(cpf)).thenReturn(Optional.empty());
 
-        customerRepository.save(doctor);
+        Optional<Doctor> result = repository.findByCpf(cpf);
 
-        verify(doctorJpaRepository, times(1)).save(any(DoctorEntity.class));
+        assertFalse(result.isPresent());
+        verify(jpaRepository, times(1)).findByCpf(cpf);
     }
 
     @Test
-    void testeSaveCustomerCpfAlreadyExists() {
+    void testSaveDoctorSuccess() {
         Doctor doctor = new Doctor();
-        doctor.setCpf("cpf");
-        DoctorEntity existingCustomer = new DoctorEntity();
-        when(doctorJpaRepository.findByCpf("cpf")).thenReturn(Optional.of(existingCustomer));
 
-        assertThrows(BadRequestException.class, () -> customerRepository.save(doctor));
+        repository.save(doctor);
+
+        verify(jpaRepository, times(1)).save(any(DoctorEntity.class));
+    }
+
+    @Test
+    void testFindAllDoctorsFound() {
+        DoctorEntity doctorEntity1 = new DoctorEntity();
+        DoctorEntity doctorEntity2 = new DoctorEntity();
+        when(jpaRepository.findAll()).thenReturn(List.of(doctorEntity1, doctorEntity2));
+
+        List<Doctor> result = repository.findAll();
+
+        assertEquals(2, result.size());
+        verify(jpaRepository, times(1)).findAll();
+    }
+
+    @Test
+    void testFindAllDoctorsNotFound() {
+        when(jpaRepository.findAll()).thenReturn(Collections.emptyList());
+
+        List<Doctor> result = repository.findAll();
+
+        assertTrue(result.isEmpty());
+        verify(jpaRepository, times(1)).findAll();
     }
 }

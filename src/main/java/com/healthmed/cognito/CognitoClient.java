@@ -54,13 +54,12 @@ public class CognitoClient {
                 .build();
     }
 
-    public SignUpResult signUp(User user) {
+    public void signUp(User user) {
         SignUpRequest request = new SignUpRequest().withClientId(clientId).withUsername(user.getEmail()).withPassword(user.getPassword())
                 .withSecretHash(calculateSecretHash(user.getEmail()));
 
-        SignUpResult result = client.signUp(request);
+        client.signUp(request);
         addToGroup(user);
-        return result;
     }
 
     private void addToGroup(User user) {
