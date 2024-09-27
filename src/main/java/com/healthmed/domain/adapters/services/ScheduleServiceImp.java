@@ -1,5 +1,7 @@
 package com.healthmed.domain.adapters.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.healthmed.application.adapters.controllers.exception.NotFoundException;
 import com.healthmed.domain.AppointmentSchedule;
 import com.healthmed.domain.Doctor;
@@ -10,6 +12,9 @@ import com.healthmed.domain.ports.interfaces.ScheduleServicePort;
 import com.healthmed.domain.ports.repositories.DoctorRepositoryPort;
 import com.healthmed.domain.ports.repositories.PatientRepositoryPort;
 import com.healthmed.domain.ports.repositories.ScheduleRepositoryPort;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
+import org.springframework.messaging.support.MessageBuilder;
 
 import java.util.List;
 
@@ -18,11 +23,18 @@ public class ScheduleServiceImp implements ScheduleServicePort {
     private final ScheduleRepositoryPort repositoryPort;
     private final DoctorRepositoryPort doctorRepositoryPort;
     private final PatientRepositoryPort patientRepositoryPort;
+    private final QueueMessagingTemplate queueMessagingTemplate;
+    private final ObjectMapper objectMapper;
 
-    public ScheduleServiceImp(ScheduleRepositoryPort repositoryPort, DoctorRepositoryPort doctorRepositoryPort, PatientRepositoryPort patientRepositoryPort) {
+    @Value("${cloud.aws.end-point.uri}")
+    private String endpoint;
+
+    public ScheduleServiceImp(ScheduleRepositoryPort repositoryPort, DoctorRepositoryPort doctorRepositoryPort, PatientRepositoryPort patientRepositoryPort, QueueMessagingTemplate queueMessagingTemplate, ObjectMapper objectMapper) {
         this.repositoryPort = repositoryPort;
         this.doctorRepositoryPort = doctorRepositoryPort;
         this.patientRepositoryPort = patientRepositoryPort;
+        this.queueMessagingTemplate = queueMessagingTemplate;
+        this.objectMapper = objectMapper;
     }
 
     @Override
@@ -65,6 +77,7 @@ public class ScheduleServiceImp implements ScheduleServicePort {
         appointmentSchedule.setBooked(true);
         appointmentSchedule.setPatient(patient);
         repositoryPort.save(appointmentSchedule);
+        sendAppointmentSchedule(appointmentSchedule);
     }
 
     private AppointmentSchedule findAvaliableAppointmentSchedule(Long scheduleId, String doctorCpf) {
@@ -77,5 +90,14 @@ public class ScheduleServiceImp implements ScheduleServicePort {
 
     private Doctor findDoctor(String doctorCpf) {
         return doctorRepositoryPort.findByCpf(doctorCpf).orElseThrow(()-> new NotFoundException("Medico não existe"));
+    }
+
+    public void sendAppointmentSchedule(AppointmentSchedule appointmentSchedule) {
+        try {
+            String message = objectMapper.writeValueAsString(appointmentSchedule);
+            queueMessagingTemplate.send(endpoint, MessageBuilder.withPayload(message).build());
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -7,7 +7,7 @@ cloud:
       access-key: ${AWS_ACCESS_KEY}
       secret-key: ${AWS_SECRET_ACCESS_KEY}
     end-point:
-      uri: ${AWS_ENDPOINT_PAGAMENTO}
+      uri: ${AWS_ENDPOINT_CONSULTA}
     cognito:
       client-id: ${COGNITO_CLIENT_ID}
       userpool: ${COGNITO_USERPOOL}
