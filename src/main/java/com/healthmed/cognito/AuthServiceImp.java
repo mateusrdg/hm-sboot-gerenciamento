@@ -7,9 +7,15 @@ import com.healthmed.application.adapters.controllers.exception.InternalServerEr
 import com.healthmed.domain.User;
 import com.healthmed.domain.dtos.AuthDTO;
 import com.healthmed.domain.ports.interfaces.AuthServicePort;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class AuthServiceImp implements AuthServicePort {
-    CognitoClient client = new CognitoClient();
+
+    private final CognitoClient client;
+
+    public AuthServiceImp(CognitoClient client) {
+        this.client = client;
+    }
 
     @Override
     public AuthDTO login(String email, String password) {

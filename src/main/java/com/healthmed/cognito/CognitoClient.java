@@ -12,7 +12,9 @@ import com.healthmed.domain.User;
 import com.healthmed.domain.dtos.AuthDTO;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
@@ -20,9 +22,10 @@ import java.util.Base64;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@Component
 public class CognitoClient {
 
-    private final AWSCognitoIdentityProvider client ;
+    private AWSCognitoIdentityProvider client ;
 
     @Value("${cloud.aws.credentials.access-key}")
     private String accessKey;
@@ -36,9 +39,11 @@ public class CognitoClient {
     private String clientSecret;
     private final String ALGORITHM = "HmacSHA256";
 
-    public CognitoClient() {
-        client = createCognitoClient();
+    @PostConstruct
+    private void init() {
+        this.client = createCognitoClient();
     }
+
 
     private AWSCognitoIdentityProvider createCognitoClient() {
         AWSCredentials cred = new BasicAWSCredentials(accessKey, secretKey);

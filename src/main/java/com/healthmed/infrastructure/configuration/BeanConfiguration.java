@@ -1,6 +1,7 @@
 package com.healthmed.infrastructure.configuration;
 
 import com.healthmed.cognito.AuthServiceImp;
+import com.healthmed.cognito.CognitoClient;
 import com.healthmed.domain.adapters.services.DoctorServiceImp;
 import com.healthmed.domain.adapters.services.PatientServiceImp;
 import com.healthmed.domain.adapters.services.ScheduleServiceImp;
@@ -33,8 +34,8 @@ public class BeanConfiguration {
     }
 
     @Bean
-    AuthServicePort authServicePort() {
-        return new AuthServiceImp();
+    AuthServicePort authServicePort(CognitoClient cognitoClient) {
+        return new AuthServiceImp(cognitoClient);
     }
 
 }
