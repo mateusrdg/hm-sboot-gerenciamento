@@ -15,6 +15,7 @@ import com.healthmed.domain.ports.repositories.ScheduleRepositoryPort;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
 import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -71,6 +72,7 @@ public class ScheduleServiceImp implements ScheduleServicePort {
     }
 
     @Override
+    @Transactional
     public void bookAppointment(String doctorCpf, Long scheduleId, String patientCpf) {
         var appointmentSchedule = findAvaliableAppointmentSchedule(scheduleId, doctorCpf);
         var patient = findPatient(patientCpf);

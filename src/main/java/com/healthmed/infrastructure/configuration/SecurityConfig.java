@@ -22,14 +22,19 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()  // Permitir acesso irrestrito a todos os endpoints
+                .antMatchers("/doctor").permitAll()
+                .antMatchers("/patient").permitAll()
+                .antMatchers("/auth/login").permitAll()
+                .antMatchers("/doctor/**").hasAuthority("ROLE_PACIENTE")
+                .antMatchers("/doctor/**").hasAuthority("ROLE_MEDICO")
+                .anyRequest().authenticated()
                 .and()
                 .oauth2ResourceServer()
                 .jwt()
                 .jwtAuthenticationConverter(jwtAuthenticationConverter())
                 .and()
                 .and()
-                .csrf().disable();  // Desabilitar CSRF para testes ou ambientes não críticos
+                .csrf().disable();
         return http.build();
     }
 
