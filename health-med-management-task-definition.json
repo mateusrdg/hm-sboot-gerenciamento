@@ -39,7 +39,7 @@
                     "valueFrom": "arn:aws:secretsmanager:us-east-2:211125787133:secret:aws-Skpfk4:COGNITO_CLIENT_SECRET::"
                 },
                 {
-                    "name": "JWK_SET_URI,",
+                    "name": "JWK_SET_URI",
                     "valueFrom": "arn:aws:secretsmanager:us-east-2:211125787133:secret:aws-Skpfk4:JWK_SET_URI::"
                 }
             ],
