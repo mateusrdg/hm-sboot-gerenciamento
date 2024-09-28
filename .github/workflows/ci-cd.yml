@@ -26,6 +26,27 @@ jobs:
         id: extract-artifactId
         run: echo "ARTIFACT_ID=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
 
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.TOKEN_SONAR }}
+          SONAR_HOST_URL: ${{ secrets.HOST_SONAR }}
+        with:
+          args: >
+            -Dsonar.projectKey=${{ env.ARTIFACT_ID }}
+            -Dsonar.java.binaries=target
+            -Dsonar.sources=src/main/java
+            -Dsonar.tests=src/test/java
+
+      # Check the Quality Gate status.
+      - name: SonarQube Quality Gate check
+        id: sonarqube-quality-gate-check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        # Force to fail step after specific time.
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.TOKEN_SONAR }}
+          SONAR_HOST_URL: ${{ secrets.HOST_SONAR }}
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
