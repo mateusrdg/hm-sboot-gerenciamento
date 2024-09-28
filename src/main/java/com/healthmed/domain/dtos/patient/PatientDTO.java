@@ -29,7 +29,7 @@ public class PatientDTO {
 
     @NotNull(message = "O campo 'password' não pode ser nulo")
     @NotBlank(message = "O campo 'password' não pode estar em branco")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     public PatientDTO (String name, String cpf, String email) {
