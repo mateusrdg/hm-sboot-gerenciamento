@@ -27,4 +27,6 @@ O microserviço de agendamento tem como função:
 
 O deploy das aplicações é realizado através do **GitHub Actions**. As Pull Requests (PRs) não direcionadas à branch **main** são validadas pelo **SonarQube**. A partir dessas validações, uma imagem é gerada no **Amazon ECR** e o deploy é realizado através de uma **Service Task** no **Amazon ECS**.
 
-<img src="assets/deploy_cicd.png" alt="Fluxo de Deploy CI/CD" width="600"/>
+
+## Cobertura de testes
+![img.png](img.png)
