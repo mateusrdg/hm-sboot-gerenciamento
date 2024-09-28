@@ -1,6 +1,6 @@
 # Health&Med
 ## Diagrama de Arquitetura
-![Diagrama de Arquitetura](assets/diagrama arqb.png)
+![Diagrama de Arquitetura](assets/diagrama.png)
 
 ## Visão Geral
 
@@ -23,7 +23,7 @@ O microserviço de agendamento tem como função:
 
 
 ## Deploy e CI/CD
-![Fluxo de Deploy CI/CD](assets/deploy cicd.png)
+![Fluxo de Deploy CI/CD](assets/cicd.png)
 
 O deploy das aplicações é realizado através do **GitHub Actions**. As Pull Requests (PRs) não direcionadas à branch **main** são validadas pelo **SonarQube**. A partir dessas validações, uma imagem é gerada no **Amazon ECR** e o deploy é realizado através de uma **Service Task** no **Amazon ECS**.
 
